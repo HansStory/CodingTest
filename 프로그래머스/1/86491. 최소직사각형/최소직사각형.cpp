@@ -17,17 +17,22 @@ void sortMaxValueToWidth(vector<vector<int>>& sizes)
 }
 
 int solution(vector<vector<int>> sizes) {
-    
-    sortMaxValueToWidth(sizes);
-    
+     
     int max_width = 0;
     int max_height = 0;
     
-    for(int j = 0; j < sizes.size(); j++)
+    for(int i = 0; i < sizes.size(); i++)
     {
-        if(sizes[j][0] > max_width) max_width = sizes[j][0];
-        if(sizes[j][1] > max_height) max_height = sizes[j][1];
-    }  
+        int temp = sizes[i][0];
+        if(temp < sizes[i][1])
+        {
+            sizes[i][0] = sizes[i][1];
+            sizes[i][1] = temp;
+        }
+        
+        if(sizes[i][0] > max_width) max_width = sizes[i][0];
+        if(sizes[i][1] > max_height) max_height = sizes[i][1];
+    }
     
     return max_width * max_height;
 }
