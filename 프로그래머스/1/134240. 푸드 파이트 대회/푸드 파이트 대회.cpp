@@ -11,7 +11,10 @@ string solution(vector<int> food)
     for(int i = 1; i < food.size(); i ++)
     {
         int count = food[i] / 2;
-        left += string(count, '0' + i);
+        for(int j = 0; j < count; j ++)
+        {
+            left += to_string(i);
+        }
     }
     
     string right = left;
