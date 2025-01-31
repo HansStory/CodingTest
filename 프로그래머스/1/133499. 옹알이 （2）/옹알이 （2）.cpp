@@ -1,35 +1,31 @@
 #include <string>
 #include <vector>
-#include <iostream>
-#include <regex>
 
 using namespace std;
 
 int solution(vector<string> babbling)
 {
-    vector<string> validWords = {"aya", "ye", "woo", "ma"};
     int answer = 0;
-    
+
     for (string word : babbling)
     {
-        string temp = word;
+        string temp1 = "";
+        string temp2 = "";
         
-        if (regex_search(temp, regex("ayaaya|yeye|woowoo|mama"))) continue;
-        
-        for (string valid : validWords)
+        for (char c : word)
         {
-            size_t pos;
-            while ((pos = temp.find(valid)) != string::npos)
+            temp1 += c;
+
+            if (temp1 == "aya" || temp1 == "ye" || temp1 == "woo" || temp1 == "ma")
             {
-                temp.replace(pos, valid.length(), " ");
+                if (temp2 == temp1) continue;
+                
+                temp2 = temp1;
+                temp1 = "";
             }
         }
-        
-        if(temp.find_first_not_of(' ') == string::npos)
-        {
-            answer++;
-        }
-        
+
+        if (temp1.size() == 0) answer++;
     }
     
     return answer;
