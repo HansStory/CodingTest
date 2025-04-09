@@ -7,7 +7,6 @@ using namespace std;
 
 int GetYear(int M, int N, int x, int y)
 {
-    //x--; y--;
     int lastYear = lcm(M, N);
     int year = x;
     while (year <= lastYear)
